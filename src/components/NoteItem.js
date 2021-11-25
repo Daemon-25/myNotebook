@@ -5,16 +5,17 @@ export const NoteItem = (props) => {
     return (
         <>
             <div className="col-md-3 my-3">
-                <div class="card text-center">
-                    <div class="card-header">
+                <div className="card">
+                    <div className="card-header">
                         {note.tag}
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{note.title}</h5>
-                        <p class="card-text">{note.description}</p>
-
+                    <div className="card-body">
+                        <h5 className="card-title">{note.title}</h5>
+                        <p className="card-text">{note.description}</p>
+                        <i className="far fa-trash-alt"></i>
+                        <i className="far fa-edit mx-3"></i>
                     </div>
-                    <div class="card-footer text-muted">
+                    <div className="card-footer text-muted">
                         {note.date}
                     </div>
                 </div>
