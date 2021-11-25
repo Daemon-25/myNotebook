@@ -1,5 +1,5 @@
-import React, { useContext }from 'react'
-import AddNote from './AddNote'
+import React from 'react'
+
 import { Notes } from './Notes'
 
 export const Home = () => {
