@@ -68,14 +68,17 @@ router.post('/login', [
 
     const { email, password } = req.body;
     try {
+        let success = false;
         let user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ error: "Please try to login with correct credentials" });
+            success = false;
+            return res.status(400).json({ success, error: "Please try to login with correct credentials" });
         }
 
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (!passwordCompare) {
-            return res.status(400).json({ error: "Please try to login with correct credentials" });
+            success = false;
+            return res.status(400).json({ success, error: "Please try to login with correct credentials" });
         }
 
         //Token creation using jwt
@@ -87,7 +90,8 @@ router.post('/login', [
         const authToken = jwt.sign(data, JWT_SECRET);
 
         //Display the Token for the New user created
-        res.json({ authToken })
+        success = true;
+        res.json({ success, authToken })
     } catch (error) {
         //catch the unknow kind of error
         console.log(error.message)

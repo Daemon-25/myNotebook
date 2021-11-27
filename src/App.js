@@ -7,7 +7,9 @@ import {
 import { About } from './components/About';
 import { Alert } from './components/Alert';
 import { Home } from './components/Home';
+import { Login } from './components/Login';
 import { Navbar } from './components/Navbar';
+import { SignUp } from './components/SignUp';
 import NoteState from './context/notes/NoteState';
 
 
@@ -27,6 +29,12 @@ function App() {
               </Route>
               <Route exact path="/about">
                 <About />
+              </Route>
+              <Route exact path="/signup">
+                <SignUp />
+              </Route>
+              <Route exact path="/login">
+                <Login />
               </Route>
             </Switch>
           </div>
