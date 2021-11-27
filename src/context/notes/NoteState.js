@@ -14,7 +14,7 @@ const NoteState = (props) => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5ZTE1Yzk5NmM0NmYwZjgwZDE0MjM3In0sImlhdCI6MTYzNzc1NTQzMn0.fyqBvkVbBFohWWSgPgWh1Kt9iQdH5N3Ud_jFCf45d4Y'
+                "auth-token": localStorage.getItem('token')
             }
         });
         const json = await response.json();
@@ -29,7 +29,7 @@ const NoteState = (props) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5ZTE1Yzk5NmM0NmYwZjgwZDE0MjM3In0sImlhdCI6MTYzNzc1NTQzMn0.fyqBvkVbBFohWWSgPgWh1Kt9iQdH5N3Ud_jFCf45d4Y'
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify({title, description, tag})
         });
@@ -47,9 +47,10 @@ const NoteState = (props) => {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5ZTE1Yzk5NmM0NmYwZjgwZDE0MjM3In0sImlhdCI6MTYzNzc1NTQzMn0.fyqBvkVbBFohWWSgPgWh1Kt9iQdH5N3Ud_jFCf45d4Y'
+                "auth-token": localStorage.getItem('token')
             },
         });
+        // eslint-disable-next-line
         const json = await response.json();
         const newNotes = notes.filter((note) => { return note._id !== id })
         setNotes(newNotes);
@@ -61,10 +62,11 @@ const NoteState = (props) => {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5ZTE1Yzk5NmM0NmYwZjgwZDE0MjM3In0sImlhdCI6MTYzNzc1NTQzMn0.fyqBvkVbBFohWWSgPgWh1Kt9iQdH5N3Ud_jFCf45d4Y'
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify({title, description, tag})
         });
+        // eslint-disable-next-line
         const json = await response.json();
 
     //Edit in Client Side

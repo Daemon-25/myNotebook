@@ -33,7 +33,8 @@ export const SignUp = (props) => {
     }
 
     return (
-        <div>
+        <div className='container mt-3'>
+            <h2>Create an Account to use myNotebook</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Userme</label>
