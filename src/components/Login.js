@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-export const Login = () => {
+export const Login = (props) => {
     const [creds, setCreds] = useState({ email: "", password: "" });
     let history = useHistory();
 
@@ -22,9 +22,9 @@ export const Login = () => {
             //Save the auth Token and redirect
             localStorage.setItem('token', json.authToken);
             history.push('/')
-
+            props.showAlert("Login Successful", "success");
         } else {
-            alert("Invalid Credentials")
+            props.showAlert("Invalid Credentials", "danger");
         }
     }
 
@@ -38,7 +38,6 @@ export const Login = () => {
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
                     <input type="email" className="form-control" value={creds.email} id="email" name='email' aria-describedby="emailHelp" onChange={handleOnChange} />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>

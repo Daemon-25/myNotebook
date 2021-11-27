@@ -15,8 +15,8 @@ export const NoteItem = (props) => {
                     <div className="card-body">
                         <h5 className="card-title">{note.title}</h5>
                         <p className="card-text">{note.description}</p>
-                        <i className="far fa-trash-alt" onClick={()=>deleteNote(note._id)}></i>
-                        <i className="far fa-edit mx-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={()=>updateNote(note)}></i>
+                        <i className="far fa-trash-alt" onClick={()=>{deleteNote(note._id); props.showAlert("Note Deleted Successfully", "success");}}></i>
+                        <i className="far fa-edit mx-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={()=>{updateNote(note);}}></i>
                     </div>
                     <div className="card-footer text-muted">
                         {note.date}

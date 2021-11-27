@@ -15,7 +15,9 @@ router.post('/createuser', [
 ], async (req, res) => {
     //If there are error, return Bad request and errors
     const errors = validationResult(req);
+    let success = false;
     if (!errors.isEmpty()) {
+        success = false;
         return res.status(400).json({ errors: errors.array() });
     }
 
@@ -23,7 +25,8 @@ router.post('/createuser', [
     try {
         let user = await User.findOne({ email: req.body.email })
         if (user) {
-            return res.status(400).json({ error: "Email already in use" });
+            success = false
+            return res.status(400).json({ success, error: "Email already in use" });
         }
 
         //Adding salt using bcryptnpm package
@@ -46,7 +49,8 @@ router.post('/createuser', [
         const authToken = jwt.sign(data, JWT_SECRET);
 
         //Display the Token for the New user created
-        res.json({ authToken })
+        success = true
+        res.json({ success, authToken })
     } catch (error) {
         //catch the unknow kind of error
         console.log(error.message)
