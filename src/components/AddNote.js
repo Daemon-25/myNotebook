@@ -17,7 +17,7 @@ const AddNote = (props) => {
         setNote({ ...note, [e.target.name]: e.target.value })
     }
     return (
-        <>
+        < >
             <div className='conatiner'>
                 <h1>Add a Note</h1>
             </div>

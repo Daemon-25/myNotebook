@@ -62,7 +62,7 @@ router.post('/createuser', [
 //ROUTE 2: Authenticate a User using: POST "/api/auth/login". No login required
 router.post('/login', [
     body('email', 'Enter a Valid Email').isEmail(),
-    body('password', 'Passwordcannot be blank').exists()
+    body('password', 'Password cannot be blank').exists()
 ], async (req, res) => {
     //If there are error, return Bad request and errors
     const errors = validationResult(req);
@@ -101,6 +101,11 @@ router.post('/login', [
         console.log(error.message)
         res.status(500).send("Internal Server Error")
     }
+})
+
+//ROUTE 4: Delete User details using: "/api/auth/deleteuser". Login Required
+router.delete('/deleteuser', fetchuser, async(req, res) => {
+
 })
 
 

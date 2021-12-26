@@ -1,30 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import userContext from '../context/users/userContext';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const Login = (props) => {
-    const [creds, setCreds] = useState({ email: "", password: "" });
+    const context = useContext(userContext)
+    const {userLogin} = context;
     let history = useHistory();
+    const [creds, setCreds] = useState({ email: "", password: "" });
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        const response = await fetch(`http://localhost:5000/api/auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: creds.email, password: creds.password })
-        });
-        const json = await response.json();
-        console.log(json);
-
-        if (json.success) {
-            //Save the auth Token and redirect
-            localStorage.setItem('token', json.authToken);
+        const success = userLogin(creds, props.showAlert);
+        if(success){
             history.push('/')
-            props.showAlert("Login Successful", "success");
-        } else {
-            props.showAlert("Invalid Credentials", "danger");
         }
     }
 

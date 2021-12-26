@@ -27,10 +27,17 @@ export const Navbar = () => {
                                 <Link className={`nav-link ${location.pathname==='/about'?'active':""}`} to="/about">About</Link>
                             </li>
                         </ul>
-                        {!localStorage.getItem('token') ? <form className="d-flex">
+                        {!localStorage.getItem('token') ? 
+                        <form className="d-flex">
                         <Link className="btn btn-secondary mx-1" to="/signup" role="button">Sign Up</Link>
                         <Link className="btn btn-secondary mx-1" to="/login" role="button">Login</Link>
-                        </form>: <Link className="btn btn-secondary mx-1" onClick={handleLogout} role="button">Logout</Link>}
+                        </form>
+                        : 
+                        <>
+                        <Link className='mx-3' to="/getuser" role="button"><i className="fa fa-user-circle fa-2x" aria-hidden="true" style={{color : 'white'}}></i></Link>
+                        <Link className="btn btn-secondary mx-1" onClick={handleLogout} role="button" to="">Logout</Link>
+                        </>
+                        }
                     </div>
                 </div>
             </nav>

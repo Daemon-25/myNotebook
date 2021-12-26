@@ -1,30 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import userContext from '../context/users/userContext';
 
 export const SignUp = (props) => {
     const [creds, setCreds] = useState({ name: "", email: "", password: "", cpassword: "" });
+    const context = useContext(userContext);
+    const { userSignup } = context;
     let history = useHistory();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const { name, email, password } = creds;
-        const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email, password })
-        });
-        const json = await response.json();
-        console.log(json);
+        
+        const success = userSignup(creds, props.showAlert);
 
-        if (json.success) {
-            //Save the auth Token and redirect
-            localStorage.setItem('token', json.authToken);
-            history.push('/')
-            props.showAlert("Account Created Successfully!", "success");
-        } else {
-            props.showAlert("USer already exists!", "danger");
+        if (success) {
+            //Redirect
+            history.push('/');
         }
     }
 

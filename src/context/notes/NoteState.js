@@ -55,6 +55,7 @@ const NoteState = (props) => {
         const newNotes = notes.filter((note) => { return note._id !== id })
         setNotes(newNotes);
     }
+
     //Edit Note
     const editNote = async (id, title, description, tag) => {
         //API Call
@@ -90,5 +91,3 @@ return (
 }
 
 export default NoteState;
-
-
