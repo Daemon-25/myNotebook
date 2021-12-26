@@ -46,7 +46,7 @@ function App() {
                   <About />
                 </Route>
                 <Route exact path="/getuser">
-                  <User />
+                  <User showAlert={showAlert}/>
                 </Route>
                 <Route exact path="/signup">
                   <SignUp showAlert={showAlert} />

@@ -8,10 +8,10 @@ export const SignUp = (props) => {
     const { userSignup } = context;
     let history = useHistory();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
-        const success = userSignup(creds, props.showAlert);
+        const success = await userSignup(creds, props.showAlert);
 
         if (success) {
             //Redirect

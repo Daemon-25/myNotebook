@@ -77,9 +77,24 @@ const UserState = (props) => {
         }
     }
 
+    //Delete User
+    const deleteUser = async () => {
+        const response = await fetch(`${host}/api/auth/deleteuser`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const json = await response.json();
+        console.log(json);
+
+        localStorage.removeItem('token');
+        return json.success;
+    }
+
 
     return (
-        <userContext.Provider value={{user, getDetails, userLogin, userSignup}}>
+        <userContext.Provider value={{user, getDetails, userLogin, userSignup, deleteUser}}>
             {props.children}
         </userContext.Provider>
     )

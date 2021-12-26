@@ -8,10 +8,10 @@ export const Login = (props) => {
     let history = useHistory();
     const [creds, setCreds] = useState({ email: "", password: "" });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const success = userLogin(creds, props.showAlert);
+        const success = await userLogin(creds, props.showAlert);
         if(success){
             history.push('/')
         }

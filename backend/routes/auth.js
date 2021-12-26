@@ -105,7 +105,18 @@ router.post('/login', [
 
 //ROUTE 4: Delete User details using: "/api/auth/deleteuser". Login Required
 router.delete('/deleteuser', fetchuser, async(req, res) => {
+    try{
+        //Find User to be deleted
+        let user = await User.findByIdAndDelete(req.params.id);
 
+        //json the success
+        res.json({"success" : "true", user : user})
+
+    }catch(error){
+        //Some random Error
+        console.log(error.message)
+        res.status(500).send("Internal Server Error")
+    }
 })
 
 
